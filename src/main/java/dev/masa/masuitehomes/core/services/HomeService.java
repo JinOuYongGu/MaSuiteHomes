@@ -12,22 +12,25 @@ import lombok.SneakyThrows;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
+/**
+ * @author Masa
+ */
 public class HomeService {
 
-private Dao<Home, Integer> homeDao;
-private MaSuiteHomes plugin;
+    private final Dao<Home, Integer> homeDao;
+    private final MaSuiteHomes plugin;
 
-@SneakyThrows
-public HomeService(MaSuiteHomes plugin) {
-    this.plugin = plugin;
-    this.homeDao = DaoManager.createDao(plugin.getApi().getDatabaseService().getConnection(), Home.class);
-    this.homeDao.setObjectCache(true);
-    TableUtils.createTableIfNotExists(plugin.getApi().getDatabaseService().getConnection(), Home.class);
-}
+    @SneakyThrows
+    public HomeService(MaSuiteHomes plugin) {
+        this.plugin = plugin;
+        this.homeDao = DaoManager.createDao(plugin.getApi().getDatabaseService().getConnection(), Home.class);
+        this.homeDao.setObjectCache(true);
+        TableUtils.createTableIfNotExists(plugin.getApi().getDatabaseService().getConnection(), Home.class);
+    }
 
     /**
      * Teleport player to home
@@ -200,10 +203,10 @@ public HomeService(MaSuiteHomes plugin) {
     private Home loadHome(UUID uuid, String name, String type) {
         // Search home from database
         Home home = null;
-        if (type.equals("findHomeByOwnerAndName")) {
+        if ("findHomeByOwnerAndName".equals(type)) {
             home = homeDao.queryBuilder().orderBy("name", true).where().in("owner", uuid).and().in("name", new SelectArg(name)).query().stream().findFirst().orElse(null);
         }
-        if (type.equals("findHomeByOwnerAndLikeName")) {
+        if ("findHomeByOwnerAndLikeName".equals(type)) {
             home = homeDao.queryBuilder().orderBy("name", true)
                     .where().in("owner", uuid)
                     .and().in("name", new SelectArg(name))

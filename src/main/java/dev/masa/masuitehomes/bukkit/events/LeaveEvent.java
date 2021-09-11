@@ -5,9 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+/**
+ * @author Masa
+ */
 public class LeaveEvent implements Listener {
 
-    private MaSuiteHomes plugin;
+    private final MaSuiteHomes plugin;
 
     public LeaveEvent(MaSuiteHomes plugin) {
         this.plugin = plugin;

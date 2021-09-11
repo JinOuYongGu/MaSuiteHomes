@@ -2,7 +2,16 @@ name: MaSuiteHomes
 main: dev.masa.masuitehomes.bukkit.MaSuiteHomes
 version: ${project.version}
 author: Masagameplay
-depend: [MaSuiteCore]
-softdepend: [Multiverse, Multiworld]
-loadbefore: [Essentials]
-api-version: 1.13
+depend: [ MaSuiteCore ]
+softdepend: [ Multiverse, Multiworld ]
+loadbefore: [ Essentials ]
+api-version: 1.16
+commands:
+  home:
+    permission: masuitehomes.home.teleport
+  homes:
+    permission: masuitehomes.home.list
+  sethome:
+    permission: masuitehomes.home.set
+  delhome:
+    permission: masuitehomes.home.delete

@@ -4,6 +4,9 @@ import com.djrapitops.plan.extension.DataExtension;
 import com.djrapitops.plan.extension.ExtensionService;
 import dev.masa.masuitehomes.bungee.MaSuiteHomes;
 
+/**
+ * @author Masa
+ */
 public class DataExtensionRegister {
 
     public static void registerHomeExtension(MaSuiteHomes plugin) {

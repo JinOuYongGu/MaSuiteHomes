@@ -4,9 +4,9 @@ import dev.masa.masuitecore.core.adapters.BukkitAdapter;
 import dev.masa.masuitecore.core.objects.Location;
 import dev.masa.masuitehomes.core.models.Home;
 import org.bukkit.Bukkit;
-
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -14,27 +14,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * @author Masa
+ */
 public class HomeMessageListener implements PluginMessageListener {
 
-    private MaSuiteHomes plugin;
+    private final MaSuiteHomes plugin;
 
     public HomeMessageListener(MaSuiteHomes plugin) {
         this.plugin = plugin;
     }
 
-    public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-        if (!channel.equals("BungeeCord")) {
+    @Override
+    public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, byte[] message) {
+        if (!"BungeeCord".equals(channel)) {
             return;
         }
         DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
 
-        String subchannel = null;
+        String subchannel;
         try {
             subchannel = in.readUTF();
-            if (subchannel.equals("HomePlayer")) {
+            if ("HomePlayer".equals(subchannel)) {
                 Player p = Bukkit.getPlayer(UUID.fromString(in.readUTF()));
 
-                if (p == null) return;
+                if (p == null) {
+                    return;
+                }
 
                 Location loc = new Location().deserialize(in.readUTF());
 
@@ -46,7 +52,7 @@ public class HomeMessageListener implements PluginMessageListener {
 
                 p.teleport(bukkitLocation);
             }
-            if (subchannel.equals("AddHome")) {
+            if ("AddHome".equals(subchannel)) {
                 Player p = Bukkit.getPlayer(UUID.fromString(in.readUTF()));
                 if (p != null) {
                     if (!plugin.homes.containsKey(p.getUniqueId())) {

@@ -3,7 +3,11 @@ package dev.masa.masuitehomes.bungee.controllers;
 import dev.masa.masuitecore.core.models.MaSuitePlayer;
 import dev.masa.masuitehomes.bungee.MaSuiteHomes;
 import dev.masa.masuitehomes.core.models.Home;
-import net.md_5.bungee.api.chat.*;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.ArrayList;
@@ -12,8 +16,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class ListController {
-    
-    private MaSuiteHomes plugin;
+
+    private final MaSuiteHomes plugin;
 
     public ListController(MaSuiteHomes plugin) {
         this.plugin = plugin;
@@ -114,7 +118,8 @@ public class ListController {
         } else {
             hc.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/home " + home.getName() + " " + owner));
         }
-        hc.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(plugin.formator.colorize(plugin.config.load("homes", "messages.yml").getString("home-hover-text").replace("%home%", home.getName()))).create()));
+        Text hoverText = new Text(plugin.formator.colorize(plugin.config.load("homes", "messages.yml").getString("home-hover-text").replace("%home%", home.getName())));
+        hc.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText));
         if (splitter) {
             hc.addExtra(plugin.formator.colorize(plugin.config.load("homes", "messages.yml").getString("homes.split")));
         }

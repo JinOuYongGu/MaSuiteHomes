@@ -7,11 +7,14 @@ import dev.masa.masuitehomes.bungee.MaSuiteHomes;
 import dev.masa.masuitehomes.core.models.Home;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
+/**
+ * @author Masa
+ */
 public class TeleportController {
 
-    private MaSuiteHomes plugin;
-    private Formator formator = new Formator();
-    private BungeeConfiguration config = new BungeeConfiguration();
+    private final MaSuiteHomes plugin;
+    private final Formator formator = new Formator();
+    private final BungeeConfiguration config = new BungeeConfiguration();
 
     public TeleportController(MaSuiteHomes p) {
         plugin = p;

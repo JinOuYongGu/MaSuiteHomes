@@ -15,10 +15,13 @@ import dev.masa.masuitehomes.core.models.Home;
 import java.util.StringJoiner;
 import java.util.UUID;
 
+/**
+ * @author Masa
+ */
 @PluginInfo(name = "MaSuiteHomes", iconName = "home", iconFamily = Family.SOLID, color = Color.BLUE)
 public class HomeDataExtension implements DataExtension {
 
-    private MaSuiteHomes plugin;
+    private final MaSuiteHomes plugin;
 
     public HomeDataExtension(MaSuiteHomes plugin) {
         this.plugin = plugin;

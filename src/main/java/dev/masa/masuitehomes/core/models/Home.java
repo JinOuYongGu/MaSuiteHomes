@@ -5,10 +5,14 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import dev.masa.masuitecore.core.objects.Location;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.Table;
 import java.util.UUID;
 
+/**
+ * @author Masa
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -50,7 +54,7 @@ public class Home {
     @DatabaseField
     private Float pitch = 0.0F;
 
-    public Home(String name, UUID owner, Location location) {
+    public Home(@NotNull String name, @NotNull UUID owner, Location location) {
         this.name = name;
         this.owner = owner;
         this.setLocation(location);

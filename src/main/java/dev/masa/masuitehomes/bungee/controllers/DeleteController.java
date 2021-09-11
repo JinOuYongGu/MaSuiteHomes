@@ -9,12 +9,15 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
 
+/**
+ * @author Masa
+ */
 public class DeleteController {
 
-    private Formator formator = new Formator();
-    private BungeeConfiguration config = new BungeeConfiguration();
+    private final Formator formator = new Formator();
+    private final BungeeConfiguration config = new BungeeConfiguration();
 
-    private MaSuiteHomes plugin;
+    private final MaSuiteHomes plugin;
 
     public DeleteController(MaSuiteHomes plugin) {
         this.plugin = plugin;

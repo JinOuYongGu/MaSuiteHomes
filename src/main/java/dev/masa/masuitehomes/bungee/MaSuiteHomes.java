@@ -25,18 +25,18 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+/**
+ * @author Masa
+ */
 public class MaSuiteHomes extends Plugin implements Listener {
 
-    public Utils utils = new Utils();
-
     @Getter
-    private HomeService homeService;
-
+    private final MaSuiteCoreAPI api = new MaSuiteCoreAPI();
+    public Utils utils = new Utils();
     public BungeeConfiguration config = new BungeeConfiguration();
     public Formator formator = new Formator();
-
     @Getter
-    private MaSuiteCoreAPI api = new MaSuiteCoreAPI();
+    private HomeService homeService;
 
     @Override
     public void onEnable() {
@@ -60,12 +60,12 @@ public class MaSuiteHomes extends Plugin implements Listener {
 
     @EventHandler
     public void onPluginMessage(PluginMessageEvent e) throws IOException {
-        if (!e.getTag().equals("BungeeCord")) {
+        if (!"BungeeCord".equals(e.getTag())) {
             return;
         }
         DataInputStream in = new DataInputStream(new ByteArrayInputStream(e.getData()));
         String subchannel = in.readUTF();
-        if (subchannel.equals("HomeCommand")) {
+        if ("HomeCommand".equals(subchannel)) {
             TeleportController teleport = new TeleportController(this);
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
@@ -73,14 +73,14 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
 
         }
-        if (subchannel.equals("HomeOtherCommand")) {
+        if ("HomeOtherCommand".equals(subchannel)) {
             TeleportController teleport = new TeleportController(this);
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
                 teleport.teleport(player, in.readUTF(), in.readUTF());
             }
         }
-        if (subchannel.equals("SetHomeCommand")) {
+        if ("SetHomeCommand".equals(subchannel)) {
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
                 SetController set = new SetController(this);
@@ -89,7 +89,7 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
         }
 
-        if (subchannel.equals("SetHomeOtherCommand")) {
+        if ("SetHomeOtherCommand".equals(subchannel)) {
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             String owner = in.readUTF();
             if (utils.isOnline(player)) {
@@ -99,7 +99,7 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
         }
 
-        if (subchannel.equals("DelHomeCommand")) {
+        if ("DelHomeCommand".equals(subchannel)) {
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
                 DeleteController delete = new DeleteController(this);
@@ -107,7 +107,7 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
         }
 
-        if (subchannel.equals("DelHomeOtherCommand")) {
+        if ("DelHomeOtherCommand".equals(subchannel)) {
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
                 DeleteController delete = new DeleteController(this);
@@ -115,7 +115,7 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
         }
 
-        if (subchannel.equals("ListHomeCommand")) {
+        if ("ListHomeCommand".equals(subchannel)) {
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
                 ListController list = new ListController(this);
@@ -123,7 +123,7 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
         }
 
-        if (subchannel.equals("ListHomeOtherCommand")) {
+        if ("ListHomeOtherCommand".equals(subchannel)) {
             ProxiedPlayer player = getProxy().getPlayer(in.readUTF());
             if (utils.isOnline(player)) {
                 ListController list = new ListController(this);
@@ -131,7 +131,7 @@ public class MaSuiteHomes extends Plugin implements Listener {
             }
         }
 
-        if (subchannel.equals("ListHomes")) {
+        if ("ListHomes".equals(subchannel)) {
             listHomes(getProxy().getPlayer(in.readUTF()));
         }
     }

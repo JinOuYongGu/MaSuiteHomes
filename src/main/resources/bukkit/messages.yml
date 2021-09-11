@@ -1,0 +1,4 @@
+invalid-home-name: "&b[系统] &a家的名称无效 可以是长度为3-16字符的中文、数字、英文、下划线"
+invalid-player: "&b[系统] &a该玩家不在线"
+wrong-command-format: "&b[系统] &a未知指令"
+no-permission: "&b[系统] &a没有权限"

@@ -8,9 +8,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.ArrayList;
 
+/**
+ * @author Masa
+ */
 public class JoinEvent implements Listener {
 
-    private MaSuiteHomes plugin;
+    private final MaSuiteHomes plugin;
 
     public JoinEvent(MaSuiteHomes plugin) {
         this.plugin = plugin;

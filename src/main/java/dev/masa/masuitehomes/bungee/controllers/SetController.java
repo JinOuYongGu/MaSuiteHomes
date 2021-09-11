@@ -2,8 +2,8 @@ package dev.masa.masuitehomes.bungee.controllers;
 
 import dev.masa.masuitecore.bungee.chat.Formator;
 import dev.masa.masuitecore.core.configuration.BungeeConfiguration;
-import dev.masa.masuitecore.core.objects.Location;
 import dev.masa.masuitecore.core.models.MaSuitePlayer;
+import dev.masa.masuitecore.core.objects.Location;
 import dev.masa.masuitehomes.bungee.MaSuiteHomes;
 import dev.masa.masuitehomes.core.models.Home;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -11,16 +11,17 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author Masa
+ */
 public class SetController {
 
-    private MaSuiteHomes plugin;
-
+    private final MaSuiteHomes plugin;
+    private final Formator formator = new Formator();
+    private final BungeeConfiguration config = new BungeeConfiguration();
     public SetController(MaSuiteHomes plugin) {
         this.plugin = plugin;
     }
-
-    private Formator formator = new Formator();
-    private BungeeConfiguration config = new BungeeConfiguration();
 
     public void set(ProxiedPlayer player, String home, Location loc, int maxGlobalHomes, int maxServerHomes) {
         setHome(player, home, loc, player.getUniqueId(), maxGlobalHomes, maxServerHomes);

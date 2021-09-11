@@ -5,9 +5,12 @@ import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+/**
+ * @author Masa
+ */
 public class LoginEvent implements Listener {
 
-    private MaSuiteHomes plugin;
+    private final MaSuiteHomes plugin;
 
     public LoginEvent(MaSuiteHomes plugin) {
         this.plugin = plugin;
